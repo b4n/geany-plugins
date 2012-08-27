@@ -13,7 +13,7 @@ extern void *amalloc(int);
 extern void *acalloc(int,int);
 extern void *arealloc(void*,int);
 extern void afree(void*);
-extern void adump();
+extern void adump(void);
 
 #define malloc	amalloc
 #define	calloc	acalloc

@@ -93,7 +93,7 @@ arealloc(void *ptr, int size)
 
 
 void
-adump()
+adump(void)
 {
     struct alist *p;
 

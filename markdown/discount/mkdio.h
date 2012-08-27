@@ -16,9 +16,9 @@ MMIOT *mkd_string(const char*,int,mkd_flag_t);	/* assemble input from a buffer *
 
 void mkd_basename(MMIOT*,char*);
 
-void mkd_initialize();
-void mkd_with_html5_tags();
-void mkd_shlib_destructor();
+void mkd_initialize(void);
+void mkd_with_html5_tags(void);
+void mkd_shlib_destructor(void);
 
 /* compilation, debugging, cleanup
  */

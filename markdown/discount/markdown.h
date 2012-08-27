@@ -168,8 +168,8 @@ extern void mkd_string_to_anchor(char*,int, mkd_sta_function_t, void*, int);
 extern Document *mkd_in(FILE *, DWORD);
 extern Document *mkd_string(const char*,int, DWORD);
 
-extern void mkd_initialize();
-extern void mkd_shlib_destructor();
+extern void mkd_initialize(void);
+extern void mkd_shlib_destructor(void);
 
 extern void mkd_ref_prefix(Document*, char*);
 

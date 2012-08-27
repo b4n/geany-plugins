@@ -19,7 +19,7 @@ typedef ANCHOR(Line) LineAnchor;
 /* create a new blank Document
  */
 static Document*
-new_Document()
+new_Document(void)
 {
     Document *ret = calloc(sizeof(Document), 1);
 
