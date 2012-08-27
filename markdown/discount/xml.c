@@ -19,7 +19,7 @@
 
 /* return the xml version of a character
  */
-static char *
+static const char *
 mkd_xmlchar(unsigned char c)
 {
     switch (c) {
@@ -41,7 +41,7 @@ int
 mkd_generatexml(char *p, int size, FILE *out)
 {
     unsigned char c;
-    char *entity;
+    const char *entity;
 
     while ( size-- > 0 ) {
 	c = *p++;
@@ -61,7 +61,7 @@ int
 mkd_xml(char *p, int size, char **res)
 {
     unsigned char c;
-    char *entity;
+    const char *entity;
     Cstring f;
 
     CREATE(f);

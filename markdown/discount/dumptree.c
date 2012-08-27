@@ -16,7 +16,7 @@ struct frame {
 
 typedef STRING(struct frame) Stack;
 
-static char *
+static const char *
 Pptype(int typ)
 {
     switch (typ) {
@@ -101,7 +101,7 @@ dumptree(Paragraph *pp, Stack *sp, FILE *f)
     int count;
     Line *p;
     int d;
-    static char *Begin[] = { 0, "P", "center" };
+    static const char *Begin[] = { 0, "P", "center" };
 
     while ( pp ) {
 	if ( !pp->next )
@@ -134,7 +134,7 @@ dumptree(Paragraph *pp, Stack *sp, FILE *f)
 
 
 int
-mkd_dump(Document *doc, FILE *out, int flags, char *title)
+mkd_dump(Document *doc, FILE *out, int flags, const char *title)
 {
     Stack stack;
 

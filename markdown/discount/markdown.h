@@ -157,13 +157,13 @@ extern int  mkd_xml(char *, int , char **);
 extern int  mkd_generatexml(char *, int, FILE *);
 extern void mkd_cleanup(Document *);
 extern char *mkd_cleanup_return_buffer(Document *, long*);
-extern int  mkd_line(char *, int, char **, DWORD);
-extern int  mkd_generateline(char *, int, FILE*, DWORD);
+extern int  mkd_line(const char *, int, char **, DWORD);
+extern int  mkd_generateline(const char *, int, FILE*, DWORD);
 #define mkd_text mkd_generateline
 extern void mkd_basename(Document*, char *);
 
 typedef int (*mkd_sta_function_t)(const int,const void*);
-extern void mkd_string_to_anchor(char*,int, mkd_sta_function_t, void*, int);
+extern void mkd_string_to_anchor(const char*,int, mkd_sta_function_t, void*, int);
 
 extern Document *mkd_in(FILE *, DWORD);
 extern Document *mkd_string(const char*,int, DWORD);
@@ -184,8 +184,8 @@ extern void ___mkd_initmmiot(MMIOT *, void *);
 extern void ___mkd_freemmiot(MMIOT *, void *);
 extern char* ___mkd_freemmiot_return_buffer(MMIOT *, void *, long*);
 extern void ___mkd_freeLineRange(Line *, Line *);
-extern void ___mkd_xml(char *, int, FILE *);
-extern void ___mkd_reparse(char *, int, int, MMIOT*);
+extern void ___mkd_xml(const char *, int, FILE *);
+extern void ___mkd_reparse(const char *, int, int, MMIOT*);
 extern void ___mkd_emblock(MMIOT*);
 extern void ___mkd_tidy(Cstring *);
 

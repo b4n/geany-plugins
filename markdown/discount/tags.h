@@ -4,16 +4,16 @@
 #define _TAGS_D
 
 struct kw {
-    char *id;
-    int  size;
-    int  selfclose;
+    const char *id;
+    int         size;
+    int         selfclose;
 } ;
 
 
-struct kw* mkd_search_tags(char *, int);
+struct kw* mkd_search_tags(const char *, int);
 void mkd_prepare_tags(void);
 void mkd_deallocate_tags(void);
 void mkd_sort_tags(void);
-void mkd_define_tag(char *, int);
+void mkd_define_tag(const char *, int);
 
 #endif

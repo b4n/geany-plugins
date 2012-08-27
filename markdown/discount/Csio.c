@@ -18,7 +18,7 @@ Csputc(int c, Cstring *iot)
 /* printf() into a cstring
  */
 int
-Csprintf(Cstring *iot, char *fmt, ...)
+Csprintf(Cstring *iot, const char *fmt, ...)
 {
     va_list ptr;
     int siz=100;
@@ -38,7 +38,7 @@ Csprintf(Cstring *iot, char *fmt, ...)
 /* write() into a cstring
  */
 int
-Cswrite(Cstring *iot, char *bfr, int size)
+Cswrite(Cstring *iot, const char *bfr, int size)
 {
     RESERVE(*iot, size);
     memcpy(T(*iot)+S(*iot), bfr, size);
@@ -50,7 +50,7 @@ Cswrite(Cstring *iot, char *bfr, int size)
 /* reparse() into a cstring
  */
 void
-Csreparse(Cstring *iot, char *buf, int size, int flags)
+Csreparse(Cstring *iot, const char *buf, int size, int flags)
 {
     MMIOT f;
     ___mkd_initmmiot(&f, 0);

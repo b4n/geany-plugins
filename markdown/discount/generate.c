@@ -31,7 +31,7 @@ int __mkd_footsort(Footnote *, Footnote *);
  * push text into the generator input buffer
  */
 static void
-push(char *bfr, int size, MMIOT *f)
+push(const char *bfr, int size, MMIOT *f)
 {
     while ( size-- > 0 )
 	EXPAND(f->in) = *bfr++;
@@ -132,7 +132,7 @@ Qchar(int c, MMIOT *f)
 /* Qstring()
  */
 static void
-Qstring(char *s, MMIOT *f)
+Qstring(const char *s, MMIOT *f)
 {
     while (*s)
 	Qchar(*s++, f);
@@ -142,7 +142,7 @@ Qstring(char *s, MMIOT *f)
 /* Qwrite()
  */
 static void
-Qwrite(char *s, int size, MMIOT *f)
+Qwrite(const char *s, int size, MMIOT *f)
 {
     while (size-- > 0)
 	Qchar(*s++, f);
@@ -152,7 +152,7 @@ Qwrite(char *s, int size, MMIOT *f)
 /* Qprintf()
  */
 static void
-Qprintf(MMIOT *f, char *fmt, ...)
+Qprintf(MMIOT *f, const char *fmt, ...)
 {
     char bfr[80];
     va_list ptr;
@@ -183,7 +183,7 @@ Qem(MMIOT *f, char c, int count)
 /* generate html from a markup fragment
  */
 void
-___mkd_reparse(char *bfr, int size, int flags, MMIOT *f)
+___mkd_reparse(const char *bfr, int size, int flags, MMIOT *f)
 {
     MMIOT sub;
 
@@ -210,7 +210,7 @@ ___mkd_reparse(char *bfr, int size, int flags, MMIOT *f)
  * write out a url, escaping problematic characters
  */
 static void
-puturl(char *s, int size, MMIOT *f, int display)
+puturl(const char *s, int size, MMIOT *f, int display)
 {
     unsigned char c;
 
@@ -451,8 +451,8 @@ linkyurl(MMIOT *f, int image, Footnote *p)
 /* prefixes for <automatic links>
  */
 static struct _protocol {
-    char *name;
-    int   nlen;
+    const char *name;
+    int         nlen;
 } protocol[] = {
 #define _aprotocol(x)	{ x, (sizeof x)-1 }
     _aprotocol( "https:" ),
@@ -465,13 +465,13 @@ static struct _protocol {
 
 
 static int
-isautoprefix(char *text, int size)
+isautoprefix(const char *txt, int size)
 {
     int i;
     struct _protocol *p;
 
     for (i=0, p=protocol; i < NRPROTOCOLS; i++, p++)
-	if ( (size >= p->nlen) && strncasecmp(text, p->name, p->nlen) == 0 )
+	if ( (size >= p->nlen) && strncasecmp(txt, p->name, p->nlen) == 0 )
 	    return 1;
     return 0;
 }
@@ -482,15 +482,15 @@ isautoprefix(char *text, int size)
  * defined by this structure.
  */
 typedef struct linkytype {
-    char      *pat;
-    int      szpat;
-    char *link_pfx;	/* tag prefix and link pointer  (eg: "<a href="\"" */
-    char *link_sfx;	/* link suffix			(eg: "\""          */
-    int        WxH;	/* this tag allows width x height arguments */
-    char *text_pfx;	/* text prefix                  (eg: ">"           */
-    char *text_sfx;	/* text suffix			(eg: "</a>"        */
-    int      flags;	/* reparse flags */
-    int      kind;	/* tag is url or something else? */
+    const char  *pat;
+    int          szpat;
+    const char  *link_pfx;	/* tag prefix and link pointer  (eg: "<a href="\"" */
+    const char  *link_sfx;	/* link suffix			(eg: "\""          */
+    int          WxH;		/* this tag allows width x height arguments */
+    const char  *text_pfx;	/* text prefix                  (eg: ">"           */
+    const char  *text_sfx;	/* text suffix			(eg: "</a>"        */
+    int          flags;		/* reparse flags */
+    int          kind;		/* tag is url or something else? */
 #define IS_URL	0x01
 } linkytype;
 
@@ -742,7 +742,7 @@ cputc(int c, MMIOT *f)
  * convert an email address to a string of nonsense
  */
 static void
-mangle(char *s, int len, MMIOT *f)
+mangle(const char *s, int len, MMIOT *f)
 {
     while ( len-- > 0 ) {
 	Qstring("&#", f);
@@ -1053,7 +1053,7 @@ smartyquote(int *flags, char typeofquote, MMIOT *f)
 
 
 static int
-islike(MMIOT *f, char *s)
+islike(MMIOT *f, const char *s)
 {
     int len;
     int i;
@@ -1081,10 +1081,10 @@ islike(MMIOT *f, char *s)
 
 
 static struct smarties {
-    char c0;
-    char *pat;
-    char *entity;
-    int shift;
+    char        c0;
+    const char *pat;
+    const char *entity;
+    int         shift;
 } smarties[] = {
     { '\'', "'s>",      "rsquo",  0 },
     { '\'', "'t>",      "rsquo",  0 },
@@ -1397,13 +1397,13 @@ printheader(Paragraph *pp, MMIOT *f)
 
 enum e_alignments { a_NONE, a_CENTER, a_LEFT, a_RIGHT };
 
-static char* alignments[] = { "", " align=\"center\"", " align=\"left\"",
-				  " align=\"right\"" };
+static const char* alignments[] = { "", " align=\"center\"", " align=\"left\"",
+				    " align=\"right\"" };
 
 typedef STRING(int) Istring;
 
 static int
-splat(Line *p, char *block, Istring align, int force, MMIOT *f)
+splat(Line *p, const char *block, Istring align, int force, MMIOT *f)
 {
     int first,
 	idx = p->dle,
@@ -1517,8 +1517,8 @@ static int
 printblock(Paragraph *pp, MMIOT *f)
 {
     Line *t = pp->text;
-    static char *Begin[] = { "", "<p>", "<p style=\"text-align:center;\">"  };
-    static char *End[]   = { "", "</p>","</p>" };
+    static const char *Begin[] = { "", "<p>", "<p style=\"text-align:center;\">"  };
+    static const char *End[]   = { "", "</p>","</p>" };
 
     while (t) {
 	if ( S(t->text) ) {
@@ -1584,7 +1584,7 @@ printhtml(Line *t, MMIOT *f)
 
 
 static void
-htmlify(Paragraph *p, char *block, char *arguments, MMIOT *f)
+htmlify(Paragraph *p, const char *block, const char *arguments, MMIOT *f)
 {
     ___mkd_emblock(f);
     if ( block )

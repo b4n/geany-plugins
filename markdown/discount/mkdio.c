@@ -218,7 +218,7 @@ markdown(Document *document, FILE *out, int flags)
 /* write out a Cstring, mangled into a form suitable for `<a href=` or `<a id=`
  */
 void
-mkd_string_to_anchor(char *s, int len, mkd_sta_function_t outchar,
+mkd_string_to_anchor(const char *s, int len, mkd_sta_function_t outchar,
 				       void *out, int labelformat)
 {
     unsigned char c;
@@ -250,7 +250,7 @@ mkd_string_to_anchor(char *s, int len, mkd_sta_function_t outchar,
 /*  ___mkd_reparse() a line
  */
 static void
-mkd_parse_line(char *bfr, int size, MMIOT *f, int flags)
+mkd_parse_line(const char *bfr, int size, MMIOT *f, int flags)
 {
     ___mkd_initmmiot(f, 0);
     f->flags = flags & USER_FLAGS;
@@ -262,7 +262,7 @@ mkd_parse_line(char *bfr, int size, MMIOT *f, int flags)
 /* ___mkd_reparse() a line, returning it in malloc()ed memory
  */
 int
-mkd_line(char *bfr, int size, char **res, DWORD flags)
+mkd_line(const char *bfr, int size, char **res, DWORD flags)
 {
     MMIOT f;
     int len;
@@ -292,7 +292,7 @@ mkd_line(char *bfr, int size, char **res, DWORD flags)
 /* ___mkd_reparse() a line, writing it to a FILE
  */
 int
-mkd_generateline(char *bfr, int size, FILE *output, DWORD flags)
+mkd_generateline(const char *bfr, int size, FILE *output, DWORD flags)
 {
     MMIOT f;
 

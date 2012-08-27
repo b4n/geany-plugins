@@ -70,8 +70,8 @@
 typedef STRING(char) Cstring;
 
 extern void Csputc(int, Cstring *);
-extern int Csprintf(Cstring *, char *, ...);
-extern int Cswrite(Cstring *, char *, int);
-extern void Csreparse(Cstring *, char *, int, int);
+extern int Csprintf(Cstring *, const char *, ...);
+extern int Cswrite(Cstring *, const char *, int);
+extern void Csreparse(Cstring *, const char *, int, int);
 
 #endif/*_CSTRING_D*/

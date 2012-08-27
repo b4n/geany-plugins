@@ -27,9 +27,9 @@ int mkd_cleanup(MMIOT*);
 
 /* markup functions
  */
-int mkd_dump(MMIOT*, FILE*, int, char*);
+int mkd_dump(MMIOT*, FILE*, int, const char*);
 int markdown(MMIOT*, FILE*, mkd_flag_t);
-int mkd_line(char *, int, char **, mkd_flag_t);
+int mkd_line(const char *, int, char **, mkd_flag_t);
 typedef int (*mkd_sta_function_t)(const int,const void*);
 void mkd_string_to_anchor(char *, int, mkd_sta_function_t, void*, int);
 int mkd_xhtmlpage(MMIOT*,int,FILE*);
@@ -54,7 +54,7 @@ int mkd_generatetoc(MMIOT*,FILE*);
 int mkd_generatexml(char *, int,FILE*);
 int mkd_generatecss(MMIOT*,FILE*);
 #define mkd_style mkd_generatecss
-int mkd_generateline(char *, int, FILE*, mkd_flag_t);
+int mkd_generateline(const char *, int, FILE*, mkd_flag_t);
 #define mkd_text mkd_generateline
 
 /* url generator callbacks

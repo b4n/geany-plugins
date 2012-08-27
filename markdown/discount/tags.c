@@ -16,9 +16,10 @@ STRING(struct kw) extratags;
 
 
 /* define an additional html block tag
+ * @p id must live forever
  */
 void
-mkd_define_tag(char *id, int selfclose)
+mkd_define_tag(const char *id, int selfclose)
 {
     struct kw *p;
 
@@ -63,7 +64,7 @@ mkd_sort_tags(void)
 /* look for a token in the html block tag list
  */
 struct kw*
-mkd_search_tags(char *pat, int len)
+mkd_search_tags(const char *pat, int len)
 {
     struct kw key;
     struct kw *ret;

@@ -780,7 +780,7 @@ quoteblock(Paragraph *p, DWORD flags)
 	}
     }
     if ( isdivmarker(p->text,0,flags) ) {
-	char *prefix = "class";
+	const char *prefix = "class";
 	int i;
 
 	q = p->text;

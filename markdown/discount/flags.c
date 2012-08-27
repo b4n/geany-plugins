@@ -3,7 +3,7 @@
 
 struct flagnames {
     DWORD flag;
-    char *name;
+    const char *name;
 };
 
 static struct flagnames flagnames[] = {
@@ -38,7 +38,7 @@ mkd_flags_are(FILE *f, DWORD flags, int htmlplease)
 {
     int i;
     int not, set, even=1;
-    char *name;
+    const char *name;
 
     if ( htmlplease )
 	fprintf(f, "<table class=\"mkd_flags_are\">\n");
