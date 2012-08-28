@@ -514,7 +514,7 @@ islist(Line *t, int *clip, DWORD flags, int *list_type)
 		return AL;
 	    }
 
-	    unsigned long res = strtoul(T(t->text)+t->dle, &q, 10);
+	    strtoul(T(t->text)+t->dle, &q, 10);
 	    if ( (q > T(t->text)+t->dle) && (q == T(t->text) + (j-1)) ) {
 		j = nextnonblank(t,j);
 		*clip = (j > 4) ? 4 : j;
