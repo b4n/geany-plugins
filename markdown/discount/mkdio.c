@@ -204,7 +204,7 @@ mkd_generatehtml(Document *p, FILE *output)
 /* convert some markdown text to html
  */
 int
-markdown(Document *document, FILE *out, int flags)
+markdown(Document *document, FILE *out, DWORD flags)
 {
     if ( mkd_compile(document, flags) ) {
 	mkd_generatehtml(document, out);
