@@ -6,6 +6,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define USE_AMALLOC
+#include "amalloc.h"
+
 #define MAGIC 0x1f2e3d4c
 
 struct alist { int magic, size; struct alist *next, *last; };
