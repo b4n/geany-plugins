@@ -66,31 +66,26 @@ before_install:
   - gtkver=gtk2
   - test "x$GTK3" = xno || gtkver=gtk3
   - cachedir="$HOME/geany/$gtkver/"
-  # check if the cache is up2date, or drop it
+  - cache_id=$(cat "$cachedir/commit-id" 2>/dev/null || echo "none")
+  - echo "Cache ID: $cache_id"
+  - echo "Geany ID: $geany_commit"
+  # check if the cache is up-to-date, and either use it, or (re-)create it
   - >
-    if test -f "$cachedir/commit-id" &&
-       test "$geany_commit" = "$(cat "$cachedir/commit-id")"; then
-      echo "Cache '$cachedir' looks good";
+    if test "$geany_commit" = "$cache_id"; then
+      echo "Cache '$cachedir' looks good, using it.";
     else
       echo "Cache '$cachedir' is missing, outdated or invalid, dropping it.";
-      echo "  Cache ID: $(cat "$cachedir/commit-id" 2>/dev/null || echo "none")";
-      echo "  Geany ID: $geany_commit";
       rm "$cachedir" -rf || exit 1;
-    fi
-  - export GEANY_PREFIX="$cachedir"
-  - >
-    if test -f "$cachedir/commit-id"; then
-      echo "Using cached Geany build from '$cachedir' ($(cat "$cachedir/commit-id"))";
-    else
+      
       ( cd "$TEMPDIR/geany"                                         &&
-        ./autogen.sh --prefix="$GEANY_PREFIX" --enable-gtk3=$GTK3   &&
+        ./autogen.sh --prefix="$cachedir" --enable-gtk3=$GTK3       &&
         make -j2                                                    &&
         make install || exit 1;
         git rev-parse HEAD > "$cachedir/commit-id" || exit 2;
       ) || exit $?;
     fi
-  - export PKG_CONFIG_PATH="$GEANY_PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"
-  - export LD_LIBRARY_PATH="$GEANY_PREFIX/lib:$LD_LIBRARY_PATH"
+  - export PKG_CONFIG_PATH="$cachedir/lib/pkgconfig:$PKG_CONFIG_PATH"
+  - export LD_LIBRARY_PATH="$cachedir/lib:$LD_LIBRARY_PATH"
 
 before_script:
   # prepare for GP
