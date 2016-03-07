@@ -68,12 +68,10 @@ before_install:
   # check if the cache is up2date, or drop it
   - find "$cachedir" -type f || echo "cache dir missing?"
   - >
-    if test -d "$cachedir"; then
-      if ! test -f "$cachedir/commit-id" ||
-         "$(cd "$TEMPDIR/geany" && git rev-parse HEAD)" != "$(cat "$cachedir/commit-id")"; then
-        echo "Cache $cachedir is outdated or invalid, dropping it.";
-        rm "$cachedir" -rf || exit 1;
-      fi
+    if ! test -f "$cachedir/commit-id" ||
+       "$(cd "$TEMPDIR/geany" && git rev-parse HEAD)" != "$(cat "$cachedir/commit-id")"; then
+      echo "Cache $cachedir is missing, outdated or invalid, dropping it.";
+      rm "$cachedir" -rf || exit 1;
     fi
   - export GEANY_PREFIX="$cachedir"
   - >
