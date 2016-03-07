@@ -62,7 +62,7 @@ before_install:
   - TEMPDIR=$(mktemp -d)
   - git clone git://github.com/geany/geany.git "$TEMPDIR/geany"
   - gtkver=gtk2
-  - test "x$GTK3" = xyes && gtkver=gtk3
+  - test "x$GTK3" = xno || gtkver=gtk3
   - cachedir="$HOME/geany/$gtkver/"
   # check if the cache is up2date, or drop it
   - >
