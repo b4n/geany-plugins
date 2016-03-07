@@ -62,21 +62,25 @@ before_install:
   # build Geany
   - TEMPDIR=$(mktemp -d)
   - git clone git://github.com/geany/geany.git "$TEMPDIR/geany"
+  - geany_commit=$(cd "$TEMPDIR/geany" && git rev-parse HEAD)
   - gtkver=gtk2
   - test "x$GTK3" = xno || gtkver=gtk3
   - cachedir="$HOME/geany/$gtkver/"
   # check if the cache is up2date, or drop it
-  - find "$cachedir" -type f || echo "cache dir missing?"
   - >
-    if ! test -f "$cachedir/commit-id" ||
-       "$(cd "$TEMPDIR/geany" && git rev-parse HEAD)" != "$(cat "$cachedir/commit-id")"; then
-      echo "Cache $cachedir is missing, outdated or invalid, dropping it.";
+    if test -f "$cachedir/commit-id" &&
+       test "$geany_commit" = "$(cat "$cachedir/commit-id")"; then
+      echo "Cache '$cachedir' looks good";
+    else
+      echo "Cache '$cachedir' is missing, outdated or invalid, dropping it.";
+      echo "  Cache ID: $(cat "$cachedir/commit-id" 2>/dev/null || echo "none")";
+      echo "  Geany ID: $geany_commit";
       rm "$cachedir" -rf || exit 1;
     fi
   - export GEANY_PREFIX="$cachedir"
   - >
     if test -f "$cachedir/commit-id"; then
-      echo "Using cached Geany build from $cachedir ($(cat "$cachedir/commit-id"))";
+      echo "Using cached Geany build from '$cachedir' ($(cat "$cachedir/commit-id"))";
     else
       ( cd "$TEMPDIR/geany"                                         &&
         ./autogen.sh --prefix="$GEANY_PREFIX" --enable-gtk3=$GTK3   &&
