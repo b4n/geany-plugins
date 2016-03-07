@@ -1,7 +1,6 @@
 language: c
 
-sudo: required
-dist: trusty
+sudo: false
 
 compiler:
   - gcc
@@ -42,14 +41,15 @@ addons:
     - libgpgme11-dev
     # geanypy
     # FIXME: Ubuntu 12.04 doesn't seem to have it
-    - libpython-dev
+    #- libpython-dev
     # geanyvc
     - libgtkspell-dev
+    - libgtkspell-3-dev
     # geaniuspaste/updatechecker
     - libsoup2.4-dev
     # git-changebar
-    # FIXME: Ubuntu 12.04 doesn't seem to have it
-    - libgit2-dev
+    # FIXME: Ubuntu 12.04 doesn't seem to have it, 14.04 has a too old one
+    #- libgit2-dev
     # markdown
     - libmarkdown2-dev
     # markdown/webhelper
