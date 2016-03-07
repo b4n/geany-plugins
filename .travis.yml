@@ -10,6 +10,7 @@ env:
 #  - GTK3=yes
 
 cache:
+  ccache: true
   dirctories:
     $HOME/geany/gtk3
     $HOME/geany/gtk2
