@@ -7,7 +7,7 @@ compiler:
 
 env:
   - GTK3=no
-#  - GTK3=yes
+  - GTK3=yes
 
 cache:
   ccache: true
