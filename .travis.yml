@@ -42,6 +42,7 @@ addons:
     # geanypy
     # FIXME: Ubuntu 12.04 doesn't seem to have it
     #- libpython-dev
+    - python-dev
     # geanyvc
     - libgtkspell-dev
     - libgtkspell-3-dev
