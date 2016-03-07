@@ -11,7 +11,7 @@ env:
 
 cache:
   ccache: true
-  dirctories:
+  directories:
     - $HOME/geany/gtk3
     - $HOME/geany/gtk2
 
