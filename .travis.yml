@@ -43,6 +43,7 @@ addons:
     # FIXME: Ubuntu 12.04 doesn't seem to have it
     #- libpython-dev
     - python-dev
+    - python-gtk2-dev
     # geanyvc
     - libgtkspell-dev
     - libgtkspell-3-dev
