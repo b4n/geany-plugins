@@ -4,6 +4,7 @@ sudo: false
 
 compiler:
   - gcc
+  - clang
 
 env:
   - GTK3=no
@@ -81,6 +82,7 @@ before_install:
       rm "$cachedir" -rf || exit 1;
       
       ( cd "$TEMPDIR/geany"                                         &&
+        CC=gcc CFLAGS= CPPFLAGS= LDFLAGS=
         ./autogen.sh --prefix="$cachedir" --enable-gtk3=$GTK3       &&
         make -j2                                                    &&
         make install || exit 1;
