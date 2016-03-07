@@ -3,7 +3,7 @@ compiler:
   - gcc
 env:
   - GTK3=no
-  - GTK3=yes
+  #~ - GTK3=yes
 before_install:
   - sudo apt-get update -qq
 install:
