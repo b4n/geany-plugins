@@ -40,13 +40,14 @@ addons:
     # geanypg
     - libgpgme11-dev
     # geanypy
-    # FIXME: Ubuntu 12.04 doesn't seem to have it??
-    #        ...and Travis new infra still runs 12.04 (at least can)
+    # FIXME: Ubuntu 12.04 doesn't seem to have it
     #- libpython-dev
     # geanyvc
     - libgtkspell-dev
     # geaniuspaste/updatechecker
     - libsoup2.4-dev
+    # git-changebar
+    - libgit2-dev
     # markdown
     - libmarkdown2-dev
     # markdown/webhelper
