@@ -67,15 +67,14 @@ before_install:
   - test "x$GTK3" = xno || gtkver=gtk3
   - cachedir="$HOME/geany/$gtkver/"
   - cache_id=$(cat "$cachedir/commit-id" 2>/dev/null || echo "none")
-  - >
-    echo "Cache ID: $cache_id";
-    echo "Geany ID: $geany_commit"
   # check if the cache is up-to-date, and either use it, or (re-)create it
   - >
     if test "$geany_commit" = "$cache_id"; then
-      echo "Cache '$cachedir' looks good, using it.";
+      echo "Cache '$cachedir' looks good, using it (ID: $cache_id).";
     else
       echo "Cache '$cachedir' is missing, outdated or invalid, dropping it.";
+      echo "  Cache ID: $cache_id";
+      echo "  Geany ID: $geany_commit";
       rm "$cachedir" -rf || exit 1;
       
       ( cd "$TEMPDIR/geany"                                         &&
