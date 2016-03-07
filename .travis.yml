@@ -25,6 +25,7 @@ install:
   # geanypy
   # FIXME: Ubuntu 12.04 doesn't seem to have it??
   #- sudo apt-get install -y libpython-dev
+  - sudo apt-get install -y python-dev python-gtk2-dev
   # geanyvc
   - sudo apt-get install -y libgtkspell-dev
   # geaniuspaste/updatechecker
