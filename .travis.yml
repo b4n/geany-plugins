@@ -76,11 +76,12 @@ before_install:
     if test -f "$cachedir/commit-id"; then
       echo "Using cached Geany build from $cachedir ($(cat "$cachedir/commit-id"))";
     else
-      cd "$TEMPDIR/geany"                                         &&
-      ./autogen.sh --prefix="$GEANY_PREFIX" --enable-gtk3=$GTK3   &&
-      make -j2                                                    &&
-      make install || exit 1;
-      git rev-parse HEAD > "$cachedir/commit-id" || exit 2;
+      ( cd "$TEMPDIR/geany"                                         &&
+        ./autogen.sh --prefix="$GEANY_PREFIX" --enable-gtk3=$GTK3   &&
+        make -j2                                                    &&
+        make install || exit 1;
+        git rev-parse HEAD > "$cachedir/commit-id" || exit 2;
+      ) || exit $?;
     fi
   - export PKG_CONFIG_PATH="$GEANY_PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"
   - export LD_LIBRARY_PATH="$GEANY_PREFIX/lib:$LD_LIBRARY_PATH"
