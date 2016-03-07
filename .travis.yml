@@ -12,8 +12,8 @@ env:
 cache:
   ccache: true
   dirctories:
-    $HOME/geany/gtk3
-    $HOME/geany/gtk2
+    - $HOME/geany/gtk3
+    - $HOME/geany/gtk2
 
 addons:
   apt:
