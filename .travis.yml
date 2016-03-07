@@ -66,10 +66,14 @@ before_install:
   - test "x$GTK3" = xno || gtkver=gtk3
   - cachedir="$HOME/geany/$gtkver/"
   # check if the cache is up2date, or drop it
+  - find "$cachedir" -type f || echo "cache dir missing?"
   - >
-    if test -f "$cachedir/commit-id" &&
-       "$(cd "$TEMPDIR/geany" && git rev-parse HEAD)" != "$(cat "$cachedir/commit-id")"; then
-      rm "$cachedir" -rf;
+    if test -d "$cachedir"; then
+      if ! test -f "$cachedir/commit-id" ||
+         "$(cd "$TEMPDIR/geany" && git rev-parse HEAD)" != "$(cat "$cachedir/commit-id")"; then
+        echo "Cache $cachedir is outdated or invalid, dropping it.";
+        rm "$cachedir" -rf || exit 1;
+      fi
     fi
   - export GEANY_PREFIX="$cachedir"
   - >
