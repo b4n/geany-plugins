@@ -13,6 +13,8 @@ dist_pluginhtmldoc_DATA = \
 	manual.html
 
 if BUILD_RST
+.PHONY: manual.html
+
 manual.html: manual.rst manual.css html4css1.css
 	echo "  DEBUG    CURDIR=$(CURDIR)"
 	echo "  DEBUG    PWD=$(PWD)"
