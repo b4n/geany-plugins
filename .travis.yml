@@ -131,8 +131,7 @@ script:
   - NOCONFIGURE=1 ./autogen.sh
   - mkdir _build && cd _build
   - ../configure --disable-silent-rules
-  - make -j2 --trace
-  - make -j2 check
+  - make -j2 && make -j2 check
 
 after_script:
   - test -z "$TEMPDIR" || rm -rf "$TEMPDIR"
