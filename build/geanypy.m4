@@ -37,3 +37,47 @@ AC_DEFUN([GP_CHECK_GEANYPY],
         geanypy/plugins/Makefile
     ])
 ])
+
+dnl GEANYPY_ARG_DISABLE(PluginName, "auto")
+dnl Same as GP_ARG_DISABLE but sets up Python support and checks whether
+dnl GeanyPy is enabled
+AC_DEFUN([GEANYPY_ARG_DISABLE],
+[
+    AC_REQUIRE([GP_CHECK_GEANYPY])
+
+    GP_ARG_DISABLE([$1], [$2])
+
+    _GP_ENABLE_CASE([$1],[no],[],
+        [dnl check for GeanyPy itself
+         AC_MSG_CHECKING([for GeanyPy])
+         AC_MSG_RESULT([(cached) $enable_geanypy])
+         AS_IF([test "$enable_geanypy" != yes],
+               [_GP_CHECK_FAILED([$1], [$1 requires GeanyPy but it is not enabled])])])
+])
+
+dnl _GEANYPY_CHECK_MODULE(MODULE, [action if found], [action if not found])
+dnl checks for Python module MODULE.  Caches in geanypy_cv_python_module_$1
+AC_DEFUN([_GEANYPY_CHECK_MODULE],
+[
+    AC_REQUIRE([GP_CHECK_GEANYPY]) dnl for $PYTHON
+
+    AC_CACHE_CHECK([for python module $1], [$(eval echo geanypy_cv_python_module_$1)],
+                   [AS_IF([$PYTHON -c "import $1" 2>/dev/null],
+                          [eval geanypy_cv_python_module_$1=yes],
+                          [eval geanypy_cv_python_module_$1=no])])
+    AS_IF([test "$(eval echo \$geanypy_cv_python_module_$1)" = yes], [$2], [$3])
+])
+
+dnl GEANYPY_CHECK_PLUGIN_DEPS(PluginName, MODULES)
+dnl Checks whether Python modules exist, and error out/disables plugins
+dnl appropriately depending on enable_$plugin
+AC_DEFUN([GEANYPY_CHECK_PLUGIN_DEPS],
+[
+    _GP_ENABLE_CASE([$1],[no],[],
+        [_geanypy_missing_modules=
+         for module in $2; do
+            _GEANYPY_CHECK_MODULE([$module],,[_geanypy_missing_modules="${_geanypy_missing_modules} $module"])
+         done
+         AS_IF([test "$_geanypy_missing_modules" = ""],,
+               [_GP_CHECK_FAILED([$1], [missing Python modules for plugin $1:$_geanypy_missing_modules])])])
+])
