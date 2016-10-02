@@ -10,6 +10,17 @@ AC_DEFUN([_GP_ARG_DISABLE_ALL],
                   [gp_enable_all=auto])
 ])
 
+dnl _GP_ENABLE_VAR(PluginName)
+AC_DEFUN([_GP_ENABLE_VAR],
+[m4_tolower(AS_TR_SH(enable_$1))dnl
+])
+
+dnl _GP_ENABLE_CASE(PluginName, ...)
+AC_DEFUN([_GP_ENABLE_CASE],
+[
+    AS_CASE([$_GP_ENABLE_VAR([$1])], m4_shift($@))
+])
+
 dnl GP_ARG_DISABLE(PluginName, default)
 dnl - default can either be yes(enabled) or no(disabled), or auto(to be used
 dnl   with GP_CHECK_PLUGIN_DEPS)
@@ -23,11 +34,11 @@ AC_DEFUN([GP_ARG_DISABLE],
                                --m4_if($2, no, enable, disable),
                                m4_tolower(AS_TR_SH($1))),
                        [Do not build the $1 plugin]),
-        m4_tolower(AS_TR_SH(enable_$1))=$enableval,
+        _GP_ENABLE_VAR([$1])=$enableval,
         [AS_CASE([$gp_enable_all],
-                 [no],  [m4_tolower(AS_TR_SH(enable_$1))=no],
-                 [yes], [m4_tolower(AS_TR_SH(enable_$1))=yes],
-                        [m4_tolower(AS_TR_SH(enable_$1))=$2])])
+                 [no],  [_GP_ENABLE_VAR([$1])=no],
+                 [yes], [_GP_ENABLE_VAR([$1])=yes],
+                        [_GP_ENABLE_VAR([$1])=$2])])
 ])
 
 dnl GP_CHECK_PLUGIN_DEPS(PluginName, VARIABLE-PREFIX,  modules...)
@@ -42,13 +53,11 @@ AC_DEFUN([GP_CHECK_PLUGIN_DEPS],
         GP_CHECK_PLUGIN_GTKN_ONLY([$1], [$gtk_dep])
     fi
 
-    if test "$m4_tolower(AS_TR_SH(enable_$1))" = "yes"; then
-        PKG_CHECK_MODULES([$2], [$3])
-    elif test "$m4_tolower(AS_TR_SH(enable_$1))" = "auto"; then
-        PKG_CHECK_MODULES([$2], [$3],
-                          [],
-                          [m4_tolower(AS_TR_SH(enable_$1))=no])
-    fi
+    _GP_ENABLE_CASE([$1],
+                    [yes], [PKG_CHECK_MODULES([$2], [$3])],
+                    [auto], [PKG_CHECK_MODULES([$2], [$3],
+                                               [],
+                                               [_GP_ENABLE_VAR([$1])=no])])
 ])
 
 dnl GP_COMMIT_PLUGIN_STATUS(PluginName)
@@ -57,12 +66,11 @@ dnl This macro must be called once for each plugin after all other GP macros.
 AC_DEFUN([GP_COMMIT_PLUGIN_STATUS],
 [
     dnl if choice wasn't made yet, enable it
-    if test "$m4_tolower(AS_TR_SH(enable_$1))" = "auto"; then
-        m4_tolower(AS_TR_SH(enable_$1))=yes
-    fi
+    _GP_ENABLE_CASE([$1],
+                    [auto], [_GP_ENABLE_VAR([$1])=yes])
     AM_CONDITIONAL(m4_toupper(AS_TR_SH(ENABLE_$1)),
-                   test "$m4_tolower(AS_TR_SH(enable_$1))" = yes)
-    GP_STATUS_PLUGIN_ADD([$1], [$m4_tolower(AS_TR_SH(enable_$1))])
+                   test "$_GP_ENABLE_VAR([$1])" = yes)
+    GP_STATUS_PLUGIN_ADD([$1], [$_GP_ENABLE_VAR([$1])])
 ])
 
 dnl GP_CHECK_MINGW

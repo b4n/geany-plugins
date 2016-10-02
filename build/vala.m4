@@ -20,7 +20,7 @@ dnl FIXME: take into account that the compiler is optional if we have
 dnl        the generated C sources
 AC_DEFUN([GP_CHECK_PLUGIN_VALA],
 [
-    AS_IF([test "$m4_tolower(AS_TR_SH(enable_$1))" = no],[],
+    AS_IF([test "$_GP_ENABLE_VAR($1)" = no],[],
           [GP_CHECK_VALAC([$2],
                           [dnl we fake the checking messages here because
                            dnl GP_CHECK_VALAC outputs messages itself
@@ -28,8 +28,7 @@ AC_DEFUN([GP_CHECK_PLUGIN_VALA],
                            AC_MSG_RESULT([yes])],
                           [AC_MSG_CHECKING([whether the vala compiler is compatible with $1])
                            AC_MSG_RESULT([no])
-                           AS_IF([test "$m4_tolower(AS_TR_SH(enable_$1))" = yes],
-                                 [AC_MSG_ERROR([$1 requires the Vala compiler])],
-                                 [test "$m4_tolower(AS_TR_SH(enable_$1))" = auto],
-                                 [m4_tolower(AS_TR_SH(enable_$1))=no])])])
+                           _GP_ENABLE_CASE([$1],
+                                           [yes], [AC_MSG_ERROR([$1 requires the Vala compiler])],
+                                           [auto], [_GP_ENABLE_VAR($1)=no])])])
 ])
