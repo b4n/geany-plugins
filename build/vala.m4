@@ -28,7 +28,5 @@ AC_DEFUN([GP_CHECK_PLUGIN_VALA],
                            AC_MSG_RESULT([yes])],
                           [AC_MSG_CHECKING([whether the vala compiler is compatible with $1])
                            AC_MSG_RESULT([no])
-                           _GP_ENABLE_CASE([$1],
-                                           [yes], [AC_MSG_ERROR([$1 requires the Vala compiler])],
-                                           [auto], [_GP_ENABLE_VAR($1)=no])])])
+                           _GP_CHECK_FAILED([$1], [$1 requires the Vala compiler])])])
 ])

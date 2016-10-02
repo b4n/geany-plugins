@@ -21,6 +21,16 @@ AC_DEFUN([_GP_ENABLE_CASE],
     AS_CASE([$_GP_ENABLE_VAR([$1])], m4_shift($@))
 ])
 
+dnl _GP_TEST_FAILED(PluginName, ErrorMessage)
+dnl calls AC_MSG_ERROR(ErrorMessage) if the plugin is force enabled, and
+dnl disables the plugin otherwise.
+AC_DEFUN([_GP_CHECK_FAILED],
+[
+    _GP_ENABLE_CASE([$1],
+                    [yes], [AC_MSG_ERROR([$2])],
+                    [auto], [_GP_ENABLE_VAR($1)=no])
+])
+
 dnl GP_ARG_DISABLE(PluginName, default)
 dnl - default can either be yes(enabled) or no(disabled), or auto(to be used
 dnl   with GP_CHECK_PLUGIN_DEPS)
