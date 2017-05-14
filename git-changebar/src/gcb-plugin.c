@@ -1117,7 +1117,8 @@ insert_buf_range (GeanyDocument *doc,
   gchar           *old_buf     = old_contents->ptr;
   gsize            old_buf_len = old_contents->size;
   gboolean         free_buf    = FALSE;
-  gint             old_pos_start, old_pos_end;
+  gint             old_pos_start;
+  gint             old_pos_end;
   gchar           *old_range;
   
   /* convert the buffer to UTF-8 if necessary */
@@ -1132,9 +1133,9 @@ insert_buf_range (GeanyDocument *doc,
   old_pos_end = sci_get_position_from_line (old_sci, old_start + old_lines);
   old_range = sci_get_contents_range (old_sci, old_pos_start, old_pos_end);
 
-  sci_insert_text(doc->editor->sci, pos, old_range);
+  sci_insert_text (doc->editor->sci, pos, old_range);
 
-  g_free(old_range);
+  g_free (old_range);
   
   if (free_buf) {
     g_free (old_buf);
@@ -1181,14 +1182,14 @@ undo_hunk_cb (const gchar *path,
     if (data->found) {
       ScintillaObject *sci = doc->editor->sci;
 
-      sci_start_undo_action(sci);
+      sci_start_undo_action (sci);
 
       if (data->new_lines > 0) {
-        gint pos = sci_get_position_from_line(sci, data->new_start - 1);
-        sci_set_target_start(sci, pos);
-        pos = sci_get_position_from_line(sci, data->new_start + data->new_lines - 1);
-        sci_set_target_end(sci, pos);
-        sci_replace_target(sci, "", FALSE);
+        gint pos = sci_get_position_from_line (sci, data->new_start - 1);
+        sci_set_target_start (sci, pos);
+        pos = sci_get_position_from_line (sci, data->new_start + data->new_lines - 1);
+        sci_set_target_end (sci, pos);
+        sci_replace_target (sci, "", FALSE);
       }
 
       if (data->old_lines > 0) {
@@ -1205,9 +1206,9 @@ undo_hunk_cb (const gchar *path,
                           data->old_lines);
       }
 
-      sci_scroll_caret(sci);
+      sci_scroll_caret (sci);
 
-      sci_end_undo_action(sci);
+      sci_end_undo_action (sci);
     }
   }
   
