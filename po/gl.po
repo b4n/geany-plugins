@@ -3530,7 +3530,7 @@ msgstr "Selección extra"
 msgid "Toggle Insert/Overwrite mode"
 msgstr ""
 
-#: ../geanymacro/src/geanymacro.c:137 ../pretty-printer/src/ConfigUI.c:429
+#: ../geanymacro/src/geanymacro.c:137 ../pretty-printer/src/ConfigUI.c:239
 msgid "Tab"
 msgstr ""
 
@@ -5770,7 +5770,7 @@ msgid ""
 "installation."
 msgstr ""
 
-#: ../pretty-printer/src/PluginEntry.c:41
+#: ../pretty-printer/src/PluginEntry.c:36
 msgid "XML PrettyPrinter"
 msgstr ""
 
@@ -5831,33 +5831,33 @@ msgstr ""
 msgid "CDATA"
 msgstr ""
 
-#: ../pretty-printer/src/ConfigUI.c:395
+#: ../pretty-printer/src/ConfigUI.c:205
 #, fuzzy
 msgid "Empty nodes"
 msgstr "(Liña baleira)"
 
-#: ../pretty-printer/src/ConfigUI.c:396
+#: ../pretty-printer/src/ConfigUI.c:206
 msgid "Concatenation (<x></x> to <x/>)"
 msgstr ""
 
-#: ../pretty-printer/src/ConfigUI.c:397
+#: ../pretty-printer/src/ConfigUI.c:207
 msgid "Spacing (<x/> to <x />)"
 msgstr ""
 
-#: ../pretty-printer/src/ConfigUI.c:398
+#: ../pretty-printer/src/ConfigUI.c:208
 msgid "Expansion (<x/> to <x></x>)"
 msgstr ""
 
-#: ../pretty-printer/src/ConfigUI.c:425
+#: ../pretty-printer/src/ConfigUI.c:235
 #, fuzzy
 msgid "Indentation"
 msgstr "Presentación"
 
-#: ../pretty-printer/src/ConfigUI.c:430
+#: ../pretty-printer/src/ConfigUI.c:240
 msgid "Space"
 msgstr ""
 
-#: ../pretty-printer/src/ConfigUI.c:454
+#: ../pretty-printer/src/ConfigUI.c:264
 msgid "Line break"
 msgstr ""
 
@@ -5914,74 +5914,74 @@ msgstr ""
 msgid "Open Selected File (Project Organizer)"
 msgstr ""
 
-#: ../projectorganizer/src/prjorg-project.c:578
+#: ../projectorganizer/src/prjorg-project.c:573
 msgid "Source patterns:"
 msgstr ""
 
-#: ../projectorganizer/src/prjorg-project.c:584
+#: ../projectorganizer/src/prjorg-project.c:579
 msgid ""
 "Space separated list of patterns that are used to identify source files. "
 "Used for header/source swapping."
 msgstr ""
 
-#: ../projectorganizer/src/prjorg-project.c:590
+#: ../projectorganizer/src/prjorg-project.c:585
 #, fuzzy
 msgid "Header patterns:"
 msgstr "Extensións de cabeceiras"
 
-#: ../projectorganizer/src/prjorg-project.c:596
+#: ../projectorganizer/src/prjorg-project.c:591
 msgid ""
 "Space separated list of patterns that are used to identify headers. Used for "
 "header/source swapping."
 msgstr ""
 
-#: ../projectorganizer/src/prjorg-project.c:602
+#: ../projectorganizer/src/prjorg-project.c:597
 #, fuzzy
 msgid "Ignored file patterns:"
 msgstr "Extensións de cabeceiras"
 
-#: ../projectorganizer/src/prjorg-project.c:608
+#: ../projectorganizer/src/prjorg-project.c:603
 msgid ""
 "Space separated list of patterns that are used to identify files that are "
 "not displayed in the project tree."
 msgstr ""
 
-#: ../projectorganizer/src/prjorg-project.c:614
+#: ../projectorganizer/src/prjorg-project.c:609
 #, fuzzy
 msgid "Ignored directory patterns:"
 msgstr "Extensións de cabeceiras"
 
-#: ../projectorganizer/src/prjorg-project.c:620
+#: ../projectorganizer/src/prjorg-project.c:615
 msgid ""
 "Space separated list of patterns that are used to identify directories that "
 "are not scanned for source files."
 msgstr ""
 
-#: ../projectorganizer/src/prjorg-project.c:626
+#: ../projectorganizer/src/prjorg-project.c:621
 #, fuzzy
 msgid "Index all project files:"
 msgstr "Procurar en todo o proxecto "
 
-#: ../projectorganizer/src/prjorg-project.c:629
+#: ../projectorganizer/src/prjorg-project.c:624
 msgid "Auto (index if less than 300 files)"
 msgstr ""
 
-#: ../projectorganizer/src/prjorg-project.c:630
+#: ../projectorganizer/src/prjorg-project.c:625
 msgid "Yes"
 msgstr ""
 
-#: ../projectorganizer/src/prjorg-project.c:631
+#: ../projectorganizer/src/prjorg-project.c:626
 #, fuzzy
 msgid "No"
 msgstr "Núm."
 
-#: ../projectorganizer/src/prjorg-project.c:635
+#: ../projectorganizer/src/prjorg-project.c:630
 msgid ""
 "Generate symbol list for all project files instead of only for the currently "
 "opened files. Might be slow for big projects."
 msgstr ""
 
-#: ../projectorganizer/src/prjorg-project.c:641
+#: ../projectorganizer/src/prjorg-project.c:636
 msgid ""
 "Note: the patterns above affect only the sidebar and are not used in the "
 "Find in Files\n"

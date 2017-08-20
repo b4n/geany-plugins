@@ -3465,7 +3465,7 @@ msgstr "Elimina selezione"
 msgid "Toggle Insert/Overwrite mode"
 msgstr "Attiva/Disattiva modalità sovrascrivi"
 
-#: ../geanymacro/src/geanymacro.c:137 ../pretty-printer/src/ConfigUI.c:429
+#: ../geanymacro/src/geanymacro.c:137 ../pretty-printer/src/ConfigUI.c:239
 msgid "Tab"
 msgstr "Tab"
 
@@ -5774,7 +5774,7 @@ msgstr ""
 "Impossibile trovare il widge t\"%s\" nella definizione delle UI, si prega di "
 "controllare l'installazione."
 
-#: ../pretty-printer/src/PluginEntry.c:41
+#: ../pretty-printer/src/PluginEntry.c:36
 msgid "XML PrettyPrinter"
 msgstr "XML PrettyPrinter"
 
@@ -5837,31 +5837,31 @@ msgstr "Nodi di testo"
 msgid "CDATA"
 msgstr "CDATA"
 
-#: ../pretty-printer/src/ConfigUI.c:395
+#: ../pretty-printer/src/ConfigUI.c:205
 msgid "Empty nodes"
 msgstr "Nodi vuoti"
 
-#: ../pretty-printer/src/ConfigUI.c:396
+#: ../pretty-printer/src/ConfigUI.c:206
 msgid "Concatenation (<x></x> to <x/>)"
 msgstr "Concatenazione (da <x></x> a <x/>)"
 
-#: ../pretty-printer/src/ConfigUI.c:397
+#: ../pretty-printer/src/ConfigUI.c:207
 msgid "Spacing (<x/> to <x />)"
 msgstr "Spaziatura (da <x/> a <x />)"
 
-#: ../pretty-printer/src/ConfigUI.c:398
+#: ../pretty-printer/src/ConfigUI.c:208
 msgid "Expansion (<x/> to <x></x>)"
 msgstr "Espansione (da <x/> a <x></x>)"
 
-#: ../pretty-printer/src/ConfigUI.c:425
+#: ../pretty-printer/src/ConfigUI.c:235
 msgid "Indentation"
 msgstr "Indentazione"
 
-#: ../pretty-printer/src/ConfigUI.c:430
+#: ../pretty-printer/src/ConfigUI.c:240
 msgid "Space"
 msgstr "Spazio"
 
-#: ../pretty-printer/src/ConfigUI.c:454
+#: ../pretty-printer/src/ConfigUI.c:264
 msgid "Line break"
 msgstr "Interruzione di riga"
 
@@ -5917,11 +5917,11 @@ msgstr ""
 msgid "Open Selected File (Project Organizer)"
 msgstr "Open file selezionato (gproject)"
 
-#: ../projectorganizer/src/prjorg-project.c:578
+#: ../projectorganizer/src/prjorg-project.c:573
 msgid "Source patterns:"
 msgstr "Patterns sorgente:"
 
-#: ../projectorganizer/src/prjorg-project.c:584
+#: ../projectorganizer/src/prjorg-project.c:579
 #, fuzzy
 msgid ""
 "Space separated list of patterns that are used to identify source files. "
@@ -5930,11 +5930,11 @@ msgstr ""
 "Lista separata da spazi dei patterns che saranno usati per identificare i "
 "file intestazione. Usato principalmente per scambiare intestazione/sorgente"
 
-#: ../projectorganizer/src/prjorg-project.c:590
+#: ../projectorganizer/src/prjorg-project.c:585
 msgid "Header patterns:"
 msgstr "Intestazione patterns:"
 
-#: ../projectorganizer/src/prjorg-project.c:596
+#: ../projectorganizer/src/prjorg-project.c:591
 #, fuzzy
 msgid ""
 "Space separated list of patterns that are used to identify headers. Used for "
@@ -5943,12 +5943,12 @@ msgstr ""
 "Lista separata da spazi dei patterns che saranno usati per identificare i "
 "file intestazione. Usato principalmente per scambiare intestazione/sorgente"
 
-#: ../projectorganizer/src/prjorg-project.c:602
+#: ../projectorganizer/src/prjorg-project.c:597
 #, fuzzy
 msgid "Ignored file patterns:"
 msgstr "Ignora patters directory:"
 
-#: ../projectorganizer/src/prjorg-project.c:608
+#: ../projectorganizer/src/prjorg-project.c:603
 #, fuzzy
 msgid ""
 "Space separated list of patterns that are used to identify files that are "
@@ -5957,12 +5957,12 @@ msgstr ""
 "Lista separata da spazi dei patterns che saranno usati per identificare le "
 "directory che non saranno scansione per file sorgenti."
 
-#: ../projectorganizer/src/prjorg-project.c:614
+#: ../projectorganizer/src/prjorg-project.c:609
 #, fuzzy
 msgid "Ignored directory patterns:"
 msgstr "Ignora patters directory:"
 
-#: ../projectorganizer/src/prjorg-project.c:620
+#: ../projectorganizer/src/prjorg-project.c:615
 msgid ""
 "Space separated list of patterns that are used to identify directories that "
 "are not scanned for source files."
@@ -5970,26 +5970,26 @@ msgstr ""
 "Lista separata da spazi dei patterns che saranno usati per identificare le "
 "directory che non saranno scansione per file sorgenti."
 
-#: ../projectorganizer/src/prjorg-project.c:626
+#: ../projectorganizer/src/prjorg-project.c:621
 #, fuzzy
 msgid "Index all project files:"
 msgstr "Cerca nei file del progetto"
 
-#: ../projectorganizer/src/prjorg-project.c:629
+#: ../projectorganizer/src/prjorg-project.c:624
 msgid "Auto (index if less than 300 files)"
 msgstr ""
 
-#: ../projectorganizer/src/prjorg-project.c:630
+#: ../projectorganizer/src/prjorg-project.c:625
 #, fuzzy
 msgid "Yes"
 msgstr "sì"
 
-#: ../projectorganizer/src/prjorg-project.c:631
+#: ../projectorganizer/src/prjorg-project.c:626
 #, fuzzy
 msgid "No"
 msgstr "N°"
 
-#: ../projectorganizer/src/prjorg-project.c:635
+#: ../projectorganizer/src/prjorg-project.c:630
 #, fuzzy
 msgid ""
 "Generate symbol list for all project files instead of only for the currently "
@@ -5999,7 +5999,7 @@ msgstr ""
 "correttamente aperti. Troppo lento per grandi progetti (>1000 files) e "
 "dovrebbe essere disabilitato in questo caso."
 
-#: ../projectorganizer/src/prjorg-project.c:641
+#: ../projectorganizer/src/prjorg-project.c:636
 msgid ""
 "Note: the patterns above affect only the sidebar and are not used in the "
 "Find in Files\n"
