@@ -1531,9 +1531,6 @@ static gboolean GetNumKey(guint keyval, gint keyArr[], gint *j)
 {
 	gint i;
 
-	/* could use hardware keycode instead of keyvals but if unable to get keyode then don't
-	 * have logical default to fall back on
-	*/
 	for(i=0;i<10;i++) {
 		if((gint)(keyval)==keyArr[i]) {
 			*j=i;
