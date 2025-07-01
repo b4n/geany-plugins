@@ -74,7 +74,7 @@ static gboolean bAlwaysSaveMarkers=FALSE; /* Always save markers, even if file h
 
 /* internal variables */
 static gint iShiftNumbers[]={41,33,64,35,36,37,94,38,42,40};
-static gint iNoShiftNumbers[]={49,50,51,52,53,54,55,56,57,58};
+static gint iNoShiftNumbers[]={48,49,50,51,52,53,54,55,56,57};
 static FileData *fdKnownFilesSettings=NULL;
 static gulong key_release_signal_id;
 
