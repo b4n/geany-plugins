@@ -1556,26 +1556,6 @@ static gboolean Key_Released_CallBack(GtkWidget *widget, GdkEventKey *ev, gpoint
 	if(ev->type!=GDK_KEY_RELEASE)
 		return FALSE;
 
-	/*
-	fprintf(stderr, "(GdkEventKey*) {\n"
-		"	state=%x (filtered=%x)\n"
-		"	keyval=%x (%u)\n"
-		"	length=%d\n"
-		"	string=%s\n"
-		"	hardware_keycode=%x (%u)\n"
-		"	group=%u\n"
-		"	is_modifier=%u\n"
-		"}\n",
-		ev->state, state,
-		ev->keyval, ev->keyval,
-		ev->length,
-		ev->string,
-		ev->hardware_keycode, ev->hardware_keycode,
-		ev->group,
-		ev->is_modifier
-	);
-	*/
-
 	/* control or control + shift pressed */
 	if(state == GDK_CONTROL_MASK || state == (GDK_CONTROL_MASK | GDK_SHIFT_MASK))
 	{
