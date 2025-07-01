@@ -1476,6 +1476,55 @@ static void SetBookMark(GeanyDocument *doc, gint iBookMark)
 }
 
 
+static gboolean GetNumKey(guint keyval, gint keyArr[], gint *j)
+{
+	gint i;
+
+	for(i=0;i<10;i++) {
+		if((gint)(keyval)==keyArr[i]) {
+			*j=i;
+			return TRUE;
+		}
+	}
+	return FALSE;
+}
+
+
+/* handle key press
+ * used to see if macro is being triggered and to control numbered bookmarks
+*/
+static gboolean Key_Released_CallBack(GtkWidget *widget, GdkEventKey *ev, gpointer data)
+{
+	GeanyDocument *doc;
+	gint i;
+	GdkModifierType state=keybindings_get_modifiers(ev->state);
+
+	doc=document_get_current();
+	if(doc==NULL)
+		return FALSE;
+
+	if(ev->type!=GDK_KEY_RELEASE)
+		return FALSE;
+
+	/* control or control + shift pressed */
+	if(state == GDK_CONTROL_MASK || state == (GDK_CONTROL_MASK | GDK_SHIFT_MASK))
+	{
+		if (GetNumKey(ev->keyval, iNoShiftNumbers, &i)) {
+			/* number key pressed without shift */
+			GotoBookMark(doc, i);
+			return TRUE;
+		}
+		else if (GetNumKey(ev->keyval, iShiftNumbers, &i)) {
+			/* number key pressed with shift */
+			SetBookMark(doc, i);
+			return TRUE;
+		}
+	}
+
+	return FALSE;
+}
+
+
 static void CalculateNumKeys(GdkKeymap *gdkKeyMap)
 {
 	gint i,iResults=0;
@@ -1523,55 +1572,6 @@ static void CalculateNumKeys(GdkKeymap *gdkKeyMap)
 		/* free resources */
 		g_free(gdkkmkResults);
 	}
-}
-
-
-static gboolean GetNumKey(guint keyval, gint keyArr[], gint *j)
-{
-	gint i;
-
-	for(i=0;i<10;i++) {
-		if((gint)(keyval)==keyArr[i]) {
-			*j=i;
-			return TRUE;
-		}
-	}
-	return FALSE;
-}
-
-
-/* handle key press
- * used to see if macro is being triggered and to control numbered bookmarks
-*/
-static gboolean Key_Released_CallBack(GtkWidget *widget, GdkEventKey *ev, gpointer data)
-{
-	GeanyDocument *doc;
-	gint i;
-	GdkModifierType state=keybindings_get_modifiers(ev->state);
-
-	doc=document_get_current();
-	if(doc==NULL)
-		return FALSE;
-
-	if(ev->type!=GDK_KEY_RELEASE)
-		return FALSE;
-
-	/* control or control + shift pressed */
-	if(state == GDK_CONTROL_MASK || state == (GDK_CONTROL_MASK | GDK_SHIFT_MASK))
-	{
-		if (GetNumKey(ev->keyval, iNoShiftNumbers, &i)) {
-			/* number key pressed without shift */
-			GotoBookMark(doc, i);
-			return TRUE;
-		}
-		else if (GetNumKey(ev->keyval, iShiftNumbers, &i)) {
-			/* number key pressed with shift */
-			SetBookMark(doc, i);
-			return TRUE;
-		}
-	}
-
-	return FALSE;
 }
 
 
